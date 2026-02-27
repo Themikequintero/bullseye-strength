@@ -6,13 +6,9 @@
 <title>Bullseye Strength</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
-/* ============================================================
-   BULLSEYE STRENGTH — DESIGN SYSTEM
-   ============================================================ */
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -29,7 +25,6 @@
 }
 
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--bg-primary);
   color: var(--text-body);
@@ -38,14 +33,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── TYPOGRAPHY ─────────────────────────────────────────────── */
 .league {
   font-family: 'League Gothic', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   line-height: 0.92;
 }
-
 .gradient-text {
   background: linear-gradient(to right, var(--accent-start), var(--accent-end));
   -webkit-background-clip: text;
@@ -53,12 +46,13 @@ body {
   background-clip: text;
 }
 
-/* ── BUTTONS ────────────────────────────────────────────────── */
+/* ── BUTTONS ── */
 .btn-primary {
   font-family: 'League Gothic', sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 1rem;
+  letter-spacing: 0.1em;
+  font-size: 1.05rem;
+  font-weight: 900;
   background: linear-gradient(to right, var(--accent-start), var(--accent-end));
   color: #000 !important;
   border: none;
@@ -70,13 +64,14 @@ body {
   transition: opacity 0.2s, transform 0.2s;
   line-height: 1;
 }
-.btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
 
 .btn-ghost {
   font-family: 'League Gothic', sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 1rem;
+  letter-spacing: 0.1em;
+  font-size: 1.05rem;
+  font-weight: 900;
   background: transparent;
   color: #fff !important;
   border: 1px solid rgba(255,255,255,0.35);
@@ -88,16 +83,15 @@ body {
   transition: border-color 0.2s, transform 0.2s;
   line-height: 1;
 }
-.btn-ghost:hover { border-color: rgba(255,255,255,0.75); transform: translateY(-1px); }
+.btn-ghost:hover { border-color: rgba(255,255,255,0.75); transform: translateY(-2px); }
 
-/* ── UTILITIES ──────────────────────────────────────────────── */
+/* ── UTILITIES ── */
 .divider-gradient {
   height: 1px;
   background: linear-gradient(to right, transparent, var(--accent-start), var(--accent-end), transparent);
   opacity: 0.4;
   margin-top: 60px;
 }
-
 .grid-bg {
   background-color: var(--bg-secondary);
   background-image:
@@ -105,18 +99,45 @@ body {
     linear-gradient(to bottom, #141414 1px, transparent 1px);
   background-size: 40px 40px;
 }
-
-/* ── FADE-IN ANIMATIONS ─────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-start);
+  margin-bottom: 20px;
+  display: block;
 }
-.fade-up { opacity: 0; animation: fadeUp 0.75s ease forwards; }
-.d1 { animation-delay: 0.05s; }
-.d2 { animation-delay: 0.2s; }
-.d3 { animation-delay: 0.38s; }
-.d4 { animation-delay: 0.55s; }
-.d5 { animation-delay: 0.7s; }
+.section-h2 {
+  font-family: 'League Gothic', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  color: #fff;
+  font-size: clamp(38px, 5.5vw, 68px);
+  margin-bottom: 36px;
+}
+.body-p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: 20px;
+}
+.body-p strong { color: #fff; font-weight: 500; }
+
+/* ── SCROLL REVEAL ANIMATION ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.45s; }
 
 /* ============================================================
    NAV
@@ -130,20 +151,70 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: background 0.3s, backdrop-filter 0.3s, border-bottom 0.3s;
-}
-#bs-nav.scrolled {
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
-.nav-logo {
-  font-family: 'League Gothic', sans-serif;
+.nav-logo img {
+  height: 32px;
+  width: auto;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 1.2rem;
-  color: #fff;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+/* ── MOBILE NAV ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: #fff;
+  transition: all 0.3s;
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px; left: 0; right: 0;
+  background: rgba(0,0,0,0.97);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 48px;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 998;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
   text-decoration: none;
 }
 
@@ -153,25 +224,23 @@ body {
 #bs-hero {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 120px 40px 80px;
+  padding: 80px 40px 80px;
   position: relative;
   overflow: hidden;
 }
-
 .hero-glow {
   position: absolute;
-  top: 35%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 700px;
-  height: 500px;
-  background: radial-gradient(ellipse, rgba(255,77,0,0.08) 0%, transparent 65%);
+  width: 700px; height: 500px;
+  background: radial-gradient(ellipse, rgba(255,77,0,0.07) 0%, transparent 65%);
   pointer-events: none;
 }
-
 .crosshair {
   position: absolute;
   border: 1px solid var(--border-accent);
@@ -185,8 +254,20 @@ body {
 .crosshair::before { width: 1px; height: 100%; left: 50%; top: 0; }
 .crosshair::after  { height: 1px; width: 100%; top: 50%; left: 0; }
 
-.hero-inner { max-width: 940px; width: 100%; position: relative; }
-
+.hero-logo {
+  margin-bottom: 32px;
+}
+.hero-logo img {
+  height: 72px;
+  width: auto;
+}
+.hero-image {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  display: block;
+  margin: 0 auto 40px;
+}
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -206,40 +287,14 @@ body {
   background: var(--accent-start);
   flex-shrink: 0;
 }
-
-.hero-h1 {
-  font-family: 'League Gothic', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  font-size: clamp(58px, 11vw, 130px);
-  line-height: 0.9;
-  color: #fff;
-  display: block;
-  margin-bottom: 6px;
-}
-.hero-h1-accent {
-  font-family: 'League Gothic', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  font-size: clamp(58px, 11vw, 130px);
-  line-height: 0.9;
-  display: block;
-  margin-bottom: 36px;
-  background: linear-gradient(to right, var(--accent-start), var(--accent-end));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 .hero-sub {
-  font-size: clamp(16px, 1.8vw, 20px);
+  font-size: clamp(15px, 1.6vw, 19px);
   color: var(--text-body);
-  max-width: 620px;
+  max-width: 580px;
   margin: 0 auto 44px;
-  line-height: 1.7;
+  line-height: 1.75;
   font-weight: 300;
 }
-
 .hero-ctas {
   display: flex;
   gap: 16px;
@@ -253,7 +308,6 @@ body {
 #bs-authority {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  overflow: hidden;
 }
 .authority-inner {
   display: flex;
@@ -286,47 +340,20 @@ body {
 }
 
 /* ============================================================
-   PROBLEM / BRIDGE
+   PROBLEM
    ============================================================ */
 #bs-problem {
   padding: 100px 48px;
   max-width: 860px;
   margin: 0 auto;
 }
-.section-label {
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent-start);
-  margin-bottom: 20px;
-  display: block;
-}
-.section-h2 {
-  font-family: 'League Gothic', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: 0.95;
-  color: #fff;
-  font-size: clamp(38px, 5.5vw, 68px);
-  margin-bottom: 36px;
-}
-.body-p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: var(--text-body);
-  margin-bottom: 20px;
-}
-.body-p strong { color: #fff; font-weight: 500; }
 
 /* ============================================================
-   THE METHOD
+   METHOD
    ============================================================ */
-#bs-method {
-  padding: 100px 48px;
-}
+#bs-method { padding: 100px 48px; }
 .method-inner { max-width: 1140px; margin: 0 auto; }
 .method-header { margin-bottom: 64px; }
-
 .method-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -334,15 +361,12 @@ body {
   background: var(--border);
   border: 1px solid var(--border);
 }
-
 .method-card {
   background: var(--bg-card);
   padding: 40px 32px;
   transition: background 0.25s;
-  cursor: default;
 }
 .method-card:hover { background: #111; }
-
 .method-icon {
   width: 46px; height: 46px;
   border: 1px solid var(--border-accent);
@@ -353,12 +377,9 @@ body {
   border-radius: 2px;
   color: rgba(255,120,30,0.9);
 }
-.method-icon svg { display: block; }
-
 .method-title {
   font-family: 'League Gothic', sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
   font-size: 1.6rem;
   color: #fff;
   margin-bottom: 12px;
@@ -371,9 +392,64 @@ body {
 }
 
 /* ============================================================
+   APP SECTION
+   ============================================================ */
+#bs-app {
+  padding: 100px 48px;
+  border-top: 1px solid var(--border);
+}
+.app-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.app-mockup img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+.app-features {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 36px;
+}
+.app-feature {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.app-feature-icon {
+  width: 36px; height: 36px;
+  border: 1px solid var(--border-accent);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: rgba(255,120,30,0.9);
+}
+.app-feature-text h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.app-feature-text p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+/* ============================================================
    ABOUT
    ============================================================ */
-#bs-about { padding: 100px 48px; }
+#bs-about { padding: 100px 48px; border-top: 1px solid var(--border); }
 .about-inner {
   max-width: 1140px;
   margin: 0 auto;
@@ -382,20 +458,12 @@ body {
   gap: 80px;
   align-items: center;
 }
-.about-img-placeholder {
-  aspect-ratio: 4/5;
-  background: var(--bg-card);
+.about-img {
+  width: 100%;
+  height: auto;
   border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 12px;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-align: center;
-  line-height: 1.6;
+  border-radius: 2px;
+  display: block;
 }
 .about-name {
   font-family: 'League Gothic', sans-serif;
@@ -437,7 +505,6 @@ body {
 }
 .testimonials-inner { max-width: 1140px; margin: 0 auto; }
 .testimonials-header { margin-bottom: 60px; }
-
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -466,8 +533,7 @@ body {
   text-align: center;
   line-height: 1.6;
 }
-.stars { display: flex; gap: 3px; }
-.star { color: var(--accent-end); font-size: 12px; }
+.stars { color: var(--accent-end); font-size: 13px; letter-spacing: 2px; }
 .t-quote {
   font-size: 0.95rem;
   line-height: 1.75;
@@ -482,11 +548,7 @@ body {
   color: #fff;
   font-weight: 500;
 }
-.t-tag {
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  margin-top: 3px;
-}
+.t-tag { font-size: 0.68rem; color: var(--text-muted); margin-top: 3px; }
 
 /* ============================================================
    FINAL CTA
@@ -540,24 +602,9 @@ body {
   flex-wrap: wrap;
   gap: 20px;
 }
-.footer-logo {
-  font-family: 'League Gothic', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 1rem;
-  color: #fff;
-  margin-bottom: 4px;
-}
-.footer-tagline {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  letter-spacing: 0.08em;
-}
-.footer-links {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
+.footer-logo img { height: 28px; width: auto; }
+.footer-tagline { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.08em; margin-top: 4px; }
+.footer-links { display: flex; gap: 24px; align-items: center; }
 .footer-link {
   display: flex;
   align-items: center;
@@ -573,72 +620,101 @@ body {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
   .method-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .about-inner { grid-template-columns: 1fr; gap: 40px; }
-  .about-img-placeholder { aspect-ratio: 16/9; }
+  .app-inner { grid-template-columns: 1fr; gap: 40px; }
 }
 @media (max-width: 640px) {
   #bs-nav { padding: 0 20px; }
-  #bs-hero { padding: 100px 24px 60px; }
-  #bs-problem, #bs-method, #bs-about, #bs-testimonials, #bs-cta { padding: 70px 24px; }
+  #bs-hero { padding: 80px 24px 60px; }
+  #bs-problem, #bs-method, #bs-app, #bs-about, #bs-testimonials, #bs-cta { padding: 70px 24px; }
   #bs-footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
   .hero-ctas { flex-direction: column; align-items: center; }
   .btn-primary, .btn-ghost { width: 100%; text-align: center; }
+  .mobile-menu { padding: 24px; }
 }
 </style>
 </head>
 <body>
 
 <!-- ============================================================
-     SECTION 1 — NAV
+     NAV
      ============================================================ -->
 <nav id="bs-nav">
-  <a href="#" class="nav-logo">Bullseye<span class="gradient-text"> Strength</span></a>
-  <a href="#bs-cta" class="btn-primary" style="font-size:0.82rem;padding:10px 22px;">Apply Now</a>
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="Bullseye Strength" />
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#bs-method">Method</a></li>
+    <li><a href="#bs-app">The App</a></li>
+    <li><a href="#bs-about">About</a></li>
+    <li><a href="#bs-testimonials">Results</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="#bs-cta" class="btn-primary" style="font-size:0.8rem;padding:10px 22px;">Apply Now</a>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#bs-method" onclick="toggleMenu()">Method</a>
+  <a href="#bs-app" onclick="toggleMenu()">The App</a>
+  <a href="#bs-about" onclick="toggleMenu()">About</a>
+  <a href="#bs-testimonials" onclick="toggleMenu()">Results</a>
+  <a href="#bs-cta" onclick="toggleMenu()" style="color:rgba(255,150,50,0.9);">Apply Now →</a>
+</div>
 
 
 <!-- ============================================================
-     SECTION 2 — HERO
+     HERO
      ============================================================ -->
 <section id="bs-hero">
   <div class="hero-glow"></div>
+  <div class="crosshair" style="width:80px;height:80px;top:18%;right:8%;opacity:0.3;"></div>
+  <div class="crosshair" style="width:40px;height:40px;bottom:22%;left:6%;opacity:0.15;"></div>
 
-  <!-- Decorative crosshairs -->
-  <div class="crosshair" style="width:80px;height:80px;top:18%;right:8%;opacity:0.35;"></div>
-  <div class="crosshair" style="width:40px;height:40px;bottom:22%;left:6%;opacity:0.18;"></div>
+  <!-- Logo -->
+  <div class="hero-logo reveal">
+    <img src="logo.png" alt="Bullseye Strength" />
+  </div>
 
-  <div class="hero-inner">
-    <div class="fade-up d1">
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
-        Now Accepting Off-Season Clients
-      </div>
-    </div>
+  <!-- Badge -->
+  <div class="hero-badge reveal reveal-delay-1">
+    <span class="badge-dot"></span>
+    Now Accepting Off-Season Clients
+  </div>
 
-    <span class="hero-h1 fade-up d2">Elite Performance.</span>
-    <span class="hero-h1-accent fade-up d2">Clinical Precision.</span>
+  <!-- Hero headline image -->
+  <img src="hero.png" alt="Elite Performance. Clinical Precision." class="hero-image reveal reveal-delay-2" />
 
-    <p class="hero-sub fade-up d3">
-      Turn your off-season into your most productive season. Medical-grade programming
-      for lifters who demand elite results through evidence-based discipline.
-    </p>
+  <!-- Subtext -->
+  <p class="hero-sub reveal reveal-delay-3">
+    Turn your off-season into your most productive season. Medical-grade programming
+    for lifters who demand elite results through evidence-based discipline.
+  </p>
 
-    <div class="hero-ctas fade-up d4">
-      <a href="#bs-cta" class="btn-primary" style="font-size:1rem;padding:17px 38px;">
-        Book Your Free 60-Min Consult
-      </a>
-      <a href="#bs-method" class="btn-ghost" style="padding:16px 28px;">
-        See The Method
-      </a>
-    </div>
+  <!-- CTAs -->
+  <div class="hero-ctas reveal reveal-delay-4">
+    <a href="#bs-cta" class="btn-primary" style="font-size:1.05rem;padding:18px 40px;">
+      Book Your Free 60-Min Consult
+    </a>
+    <a href="#bs-method" class="btn-ghost" style="padding:17px 28px;">
+      See The Method
+    </a>
   </div>
 </section>
 
 
 <!-- ============================================================
-     SECTION 3 — AUTHORITY BAR
+     AUTHORITY BAR
      ============================================================ -->
 <div id="bs-authority">
   <div class="authority-inner">
@@ -656,17 +732,17 @@ body {
 
 
 <!-- ============================================================
-     SECTION 4 — PROBLEM / BRIDGE
+     PROBLEM / BRIDGE
      ============================================================ -->
 <section id="bs-problem">
-  <span class="section-label">The Problem</span>
-  <h2 class="section-h2">Most Athletes Hit a Plateau Because They Lack a System.</h2>
-  <p class="body-p">
+  <span class="section-label reveal">The Problem</span>
+  <h2 class="section-h2 reveal">Most Athletes Hit a Plateau Because They Lack a System.</h2>
+  <p class="body-p reveal">
     Whether you're chasing a specific powerlifting total or building a professional physique,
     you need more than a cookie-cutter template. You need programming that scales with a
     high-performance life — one that accounts for your recovery, your schedule, and your ceiling.
   </p>
-  <p class="body-p">
+  <p class="body-p reveal">
     Bullseye Strength bridges the gap between <strong>clinical accuracy</strong> and
     <strong>elite intensity</strong> — a framework designed to integrate into your lifestyle
     seamlessly, built by a coach with an RN's eye for data and safety.
@@ -676,22 +752,20 @@ body {
 
 
 <!-- ============================================================
-     SECTION 5 — THE METHOD
+     THE METHOD
      ============================================================ -->
 <section id="bs-method" class="grid-bg">
   <div class="method-inner">
     <div class="method-header">
-      <span class="section-label">The Method</span>
-      <h2 class="section-h2">
+      <span class="section-label reveal">The Method</span>
+      <h2 class="section-h2 reveal">
         A Platform Built for<br>
         <span class="gradient-text">Serious Lifters.</span>
       </h2>
     </div>
-
     <div class="method-grid">
 
-      <!-- Card 1 -->
-      <div class="method-card">
+      <div class="method-card reveal">
         <div class="method-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
@@ -701,8 +775,7 @@ body {
         <p class="method-desc">Tailored periodization for powerlifting, bodybuilding, or physique enhancement. No templates. No guessing.</p>
       </div>
 
-      <!-- Card 2 -->
-      <div class="method-card">
+      <div class="method-card reveal reveal-delay-1">
         <div class="method-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
@@ -712,19 +785,17 @@ body {
         <p class="method-desc">Detailed video reviews of your lifting mechanics. Actionable cues you can apply the very next session.</p>
       </div>
 
-      <!-- Card 3 -->
-      <div class="method-card">
+      <div class="method-card reveal reveal-delay-2">
         <div class="method-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
           </svg>
         </div>
         <div class="method-title">Precision Macro Coaching</div>
-        <p class="method-desc">Nutrition targets that evolve with your progress. Includes minimal-prep recipes that actually fit real life.</p>
+        <p class="method-desc">Nutrition targets that evolve with your progress. Includes minimal-prep recipes that fit real life.</p>
       </div>
 
-      <!-- Card 4 -->
-      <div class="method-card">
+      <div class="method-card reveal reveal-delay-1">
         <div class="method-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -734,8 +805,7 @@ body {
         <p class="method-desc">Unlimited messaging for immediate feedback. No waiting 48 hours for a form check or a question answered.</p>
       </div>
 
-      <!-- Card 5 -->
-      <div class="method-card">
+      <div class="method-card reveal reveal-delay-2">
         <div class="method-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
@@ -743,11 +813,10 @@ body {
           </svg>
         </div>
         <div class="method-title">Comprehensive Check-Ins</div>
-        <p class="method-desc">Weekly questionnaires monitoring recovery, biofeedback, and stress. Data-driven adjustments every single week.</p>
+        <p class="method-desc">Weekly questionnaires monitoring recovery, biofeedback, and stress. Data-driven adjustments every week.</p>
       </div>
 
-      <!-- Card 6 — visual spacer / brand statement -->
-      <div class="method-card" style="background:#080808;display:flex;flex-direction:column;justify-content:flex-end;">
+      <div class="method-card reveal reveal-delay-3" style="background:#080808;display:flex;flex-direction:column;justify-content:flex-end;">
         <p style="font-family:'League Gothic',sans-serif;text-transform:uppercase;font-size:1.8rem;color:rgba(255,255,255,0.06);line-height:1;margin-bottom:16px;">
           Evidence-Based.<br>Always.
         </p>
@@ -760,38 +829,61 @@ body {
 
 
 <!-- ============================================================
-     SECTION 6 — ABOUT
+     THE APP
      ============================================================ -->
-<section id="bs-about">
-  <div class="about-inner">
+<section id="bs-app">
+  <div class="app-inner">
 
-    <!-- Image Placeholder -->
-    <div class="about-img-placeholder">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1">
-        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
-      </svg>
-      <span>[ COACH PHOTO ]</span>
-      <span style="font-size:0.68rem;opacity:0.45;">Replace with Jeff's photo<br>Recommended: 800×1000px</span>
+    <div class="app-mockup reveal">
+      <img src="app-mockup.png" alt="Bullseye Strength App" />
     </div>
 
-    <!-- Bio -->
-    <div>
-      <span class="section-label">About the Coach</span>
-      <div class="about-name">Jeff</div>
-      <div class="about-cred">RN, BSN &nbsp;·&nbsp; CPR/ACLS Certified</div>
-
+    <div class="reveal reveal-delay-2">
+      <span class="section-label">The Platform</span>
+      <h2 class="section-h2">
+        Your Training.<br>
+        <span class="gradient-text">All in One Place.</span>
+      </h2>
       <p class="body-p">
-        Jeff is a strength and hypertrophy coach for lifters pursuing elite personal performance. As a Registered Nurse, he brings a clinical perspective to strength training that most coaches simply can't offer.
-      </p>
-      <p class="body-p">
-        His approach prioritizes data and safety while pushing the human body to its limit — specializing in helping busy professionals integrate a high-level fitness lifestyle without compromising other life goals.
+        Every client gets access to a dedicated training app — purpose-built for
+        serious athletes. Your program, your check-ins, your progress, and your
+        coach are all in one seamless platform.
       </p>
 
-      <div class="about-badges">
-        <span class="badge">RN, BSN</span>
-        <span class="badge">Evidence-Based</span>
-        <span class="badge">Powerlifting</span>
-        <span class="badge">Physique</span>
+      <div class="app-features">
+        <div class="app-feature">
+          <div class="app-feature-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+          </div>
+          <div class="app-feature-text">
+            <h4>Live Program Access</h4>
+            <p>Your full training program updated in real time. Always know what's next.</p>
+          </div>
+        </div>
+        <div class="app-feature">
+          <div class="app-feature-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div class="app-feature-text">
+            <h4>Performance Tracking</h4>
+            <p>Log every session. Track PRs, volume, and trends over time.</p>
+          </div>
+        </div>
+        <div class="app-feature">
+          <div class="app-feature-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="app-feature-text">
+            <h4>Direct Messaging</h4>
+            <p>Message Jeff directly inside the app. Fast answers, no friction.</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -800,18 +892,46 @@ body {
 
 
 <!-- ============================================================
-     SECTION 7 — TESTIMONIALS
+     ABOUT
+     ============================================================ -->
+<section id="bs-about">
+  <div class="about-inner">
+    <div class="reveal">
+      <img src="Jeff.PNG" alt="Coach Jeff" class="about-img" />
+    </div>
+    <div class="reveal reveal-delay-2">
+      <span class="section-label">About the Coach</span>
+      <div class="about-name">Jeff</div>
+      <div class="about-cred">RN, BSN &nbsp;·&nbsp; CPR/ACLS Certified</div>
+      <p class="body-p">
+        Jeff is a strength and hypertrophy coach for lifters pursuing elite personal performance. As a Registered Nurse, he brings a clinical perspective to strength training that most coaches simply can't offer.
+      </p>
+      <p class="body-p">
+        His approach prioritizes data and safety while pushing the human body to its limit — specializing in helping busy professionals integrate a high-level fitness lifestyle without compromising other life goals.
+      </p>
+      <div class="about-badges">
+        <span class="badge">RN, BSN</span>
+        <span class="badge">Evidence-Based</span>
+        <span class="badge">Powerlifting</span>
+        <span class="badge">Physique</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     TESTIMONIALS
      ============================================================ -->
 <section id="bs-testimonials">
   <div class="testimonials-inner">
     <div class="testimonials-header">
-      <span class="section-label">Results</span>
-      <h2 class="section-h2">Real Transformations.</h2>
+      <span class="section-label reveal">Results</span>
+      <h2 class="section-h2 reveal">Real Transformations.</h2>
     </div>
-
     <div class="testimonials-grid">
 
-      <div class="testimonial-card">
+      <div class="testimonial-card reveal">
         <div class="t-photo-placeholder">
           [ BEFORE / AFTER PHOTO ]<br>
           <span style="font-size:0.65rem;opacity:0.45;">Replace with client image</span>
@@ -824,7 +944,7 @@ body {
         </div>
       </div>
 
-      <div class="testimonial-card">
+      <div class="testimonial-card reveal reveal-delay-1">
         <div class="t-photo-placeholder">
           [ BEFORE / AFTER PHOTO ]<br>
           <span style="font-size:0.65rem;opacity:0.45;">Replace with client image</span>
@@ -837,7 +957,7 @@ body {
         </div>
       </div>
 
-      <div class="testimonial-card">
+      <div class="testimonial-card reveal reveal-delay-2">
         <div class="t-photo-placeholder">
           [ BEFORE / AFTER PHOTO ]<br>
           <span style="font-size:0.65rem;opacity:0.45;">Replace with client image</span>
@@ -856,18 +976,17 @@ body {
 
 
 <!-- ============================================================
-     SECTION 8 — FINAL CTA
+     FINAL CTA
      ============================================================ -->
 <section id="bs-cta">
   <div class="cta-glow"></div>
-  <div class="cta-inner">
+  <div class="cta-inner reveal">
     <span class="section-label">Ready to Train?</span>
     <h2 class="cta-h2">Reach Your Peak.</h2>
     <p class="cta-sub">
       Stop guessing. Start progressing. Schedule a free 60-minute video consult
       to discuss your goals and build your application.
     </p>
-    <!-- ⬇ REPLACE href with your calendar/booking link -->
     <a href="REPLACE_WITH_CALENDAR_LINK" class="btn-primary" style="font-size:1.1rem;padding:20px 52px;">
       Apply for 1:1 Coaching
     </a>
@@ -877,15 +996,16 @@ body {
 
 
 <!-- ============================================================
-     SECTION 9 — FOOTER
+     FOOTER
      ============================================================ -->
 <footer id="bs-footer">
   <div>
-    <div class="footer-logo">Bullseye<span class="gradient-text"> Strength</span></div>
+    <div class="footer-logo">
+      <img src="logo.png" alt="Bullseye Strength" />
+    </div>
     <div class="footer-tagline">Modern Professional Coaching.</div>
   </div>
   <div class="footer-links">
-    <!-- ⬇ REPLACE href values -->
     <a href="REPLACE_WITH_INSTAGRAM_URL" class="footer-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -906,16 +1026,34 @@ body {
 
 
 <!-- ============================================================
-     JAVASCRIPT
+     JAVASCRIPT — scroll reveal + mobile menu
      ============================================================ -->
 <script>
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(function(el) { observer.observe(el); });
+
+  // Mobile menu
+  function toggleMenu() {
+    var menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('open');
+  }
+
   // Nav scroll effect
   var nav = document.getElementById('bs-nav');
   window.addEventListener('scroll', function() {
     if (window.scrollY > 50) {
-      nav.classList.add('scrolled');
+      nav.style.background = 'rgba(0,0,0,0.97)';
     } else {
-      nav.classList.remove('scrolled');
+      nav.style.background = 'rgba(0,0,0,0.92)';
     }
   });
 </script>
